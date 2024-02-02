@@ -18,7 +18,7 @@ const steps = [
   },
   {
     id: 'Step 2',
-    name: 'Address',
+    name: 'Payment',
     fields: ['country', 'state', 'city', 'street', 'zip']
   },
   { id: 'Step 3', name: 'Complete' }
@@ -71,6 +71,7 @@ export default function Form() {
 
   return (
     <section className='absolute inset-0 flex flex-col justify-between p-24'>
+      <h1 className='text-violet-600 text-center text-2xl font-bold mb-10'> 👋Welcome to DataBrain | Assignment-1</h1>
       {/* steps */}
       <nav aria-label='Progress'>
         <ol role='list' className='space-y-4 md:flex md:space-x-8 md:space-y-0'>
@@ -85,7 +86,7 @@ export default function Form() {
                 </div>
               ) : currentStep === index ? (
                 <div
-                  className='flex w-full flex-col border-l-4 border-sky-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4'
+                  className='flex w-full flex-col border-l-4 border-violet-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4'
                   aria-current='step'
                 >
                   <span className='text-sm font-medium text-sky-600'>
@@ -115,7 +116,7 @@ export default function Form() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
             <h2 className='text-base font-semibold leading-7 text-gray-900'>
-              Personal Information
+              Personal Information 🙋‍♂️
             </h2>
             <p className='mt-1 text-sm leading-6 text-gray-600'>
               Provide your personal details.
@@ -190,17 +191,8 @@ export default function Form() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-
-        {currentStep === 1 && (
-          <motion.div
-            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-          >
-            <h2 className='text-base font-semibold leading-7 text-gray-900'>
-              Address
+            <h2 className='text-base font-semibold leading-7 text-gray-900 mt-10'>
+              Address 🏠
             </h2>
             <p className='mt-1 text-sm leading-6 text-gray-600'>
               Address where you can receive mail.
@@ -327,6 +319,146 @@ export default function Form() {
             </div>
           </motion.div>
         )}
+  
+
+  {/* Payment page */}
+        {currentStep === 1 && (
+          <motion.div
+            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          >
+            <h2 className='text-base font-semibold leading-7 text-gray-900'>
+              Payment Details  💳
+            </h2>
+            <p className='mt-1 text-sm leading-6 text-gray-600'>
+              No need to worry with DataBrain it is best way to make secure payment
+            </p>
+
+            <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='country'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  Payment options
+                </label>
+                <div className='mt-2'>
+                  <select
+                    id='country'
+                    {...register('country')}
+                    autoComplete='country-name'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                  >
+                    <option>Debit Card</option>
+                    <option>Credit Card</option>
+                    <option>Others</option>
+                   
+                  </select>
+                  {errors.country?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.country.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              
+
+              <div className='sm:col-span-2 sm:col-start-1'>
+                <label
+                  htmlFor='city'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  Debit / Credit card no
+                </label>
+                <div className='mt-2'>
+                  <input
+                    type='text'
+                    id='city'
+                    {...register('city')}
+                    autoComplete='address-level2'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                  />
+                  {errors.city?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.city.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className='sm:col-span-2'>
+                <label
+                  htmlFor='state'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  Expiry date
+                </label>
+                <div className='mt-2'>
+                  <input
+                    type='text'
+                    id='state'
+                    {...register('state')}
+                    autoComplete='address-level1'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                  />
+                  {errors.state?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.state.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className='sm:col-span-2'>
+                <label
+                  htmlFor='zip'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  CVV
+                </label>
+                <div className='mt-2'>
+                  <input
+                    type='text'
+                    id='zip'
+                    {...register('zip')}
+                    autoComplete='postal-code'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                  />
+                  {errors.zip?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.zip.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className='col-span-full'>
+                <label
+                  htmlFor='street'
+                  className='block text-sm font-medium leading-6 text-gray-900'
+                >
+                  Name on card
+                </label>
+                <div className='mt-2'>
+                  <input
+                    type='text'
+                    id='street'
+                    {...register('street')}
+                    autoComplete='street-address'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                  />
+                  {errors.street?.message && (
+                    <p className='mt-2 text-sm text-red-400'>
+                      {errors.street.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {currentStep === 2 && (
           <>
@@ -341,7 +473,7 @@ export default function Form() {
       </form>
 
       {/* Navigation */}
-      <div className='mt-8 pt-5'>
+      <div className='pt-5'>
         <div className='flex justify-between'>
           <button
             type='button'
